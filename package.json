@@ -1,0 +1,26 @@
+{
+  "name": "miniledger",
+  "version": "0.0.1",
+  "description": "A minimal implementation of a distributed ledger for conceptual and learning purposes.",
+  "main": "index.js",
+  "scripts": {
+    "test": "test"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/tomasguti/miniledger.git"
+  },
+  "keywords": [
+    "blockchain",
+    "distributed",
+    "ledger",
+    "minimal",
+    "simple"
+  ],
+  "author": "Tomas Gutierrez",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/tomasguti/miniledger/issues"
+  },
+  "homepage": "https://github.com/tomasguti/miniledger#readme"
+}
