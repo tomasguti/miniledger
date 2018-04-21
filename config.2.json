@@ -1,0 +1,14 @@
+{
+    "name": "peer2",
+    "port": 3002,
+    "certificate": "./keys/peer2/peer2.cert",
+    "privateKey": "./keys/peer2/peer2.key",
+    "peers": [
+        {
+            "name": "peer1",
+            "hostname": "localhost",
+            "port": 3001,
+            "certificate": "./keys/peer1/peer1.cert"
+        }
+    ]
+}
