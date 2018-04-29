@@ -1,14 +1,17 @@
 const fs = require('fs');
+const config = require('./config');
 
-const blocksFolder = './blocks/';
-const blocksPrefix = 'blocks_';
+const blocksFolder = './blocks/' + config.name + '/';
+const blocksPrefix = 'block_';
+const blocksExtension = '.json';
 
-const indexFile = 'CURRENT';
-const currentBlockIndex = null;
+const indexFile = blocksFolder + config.name + '_LATEST';
+var latestBlock = null;
+var latestBlockIndex = null;
 
 // Block operations
 function read (blockIndex) {
-    var index = blockIndex || getCurrentBlockIndex();
+    var index = blockIndex || getLatestBlockIndex();
     var blockFilePath = getBlockPath(index);
     var blockFile = fs.readFileSync(blockFilePath);
     var block = JSON.parse(blockFile);
@@ -16,34 +19,42 @@ function read (blockIndex) {
 }
 
 function save (block) {
-    var index = getCurrentBlockIndex();
+    addOneTolatestBlockIndex();
+    var index = getLatestBlockIndex();
     var blockFilePath = getBlockPath(index);
     fs.writeFileSync(blockFilePath, JSON.stringify(block));
-    addOneToCurrentBlockIndex();
+    latestBlock = block;
+}
+
+function getLatestBlock() {
+    if (latestBlock) return latestBlock;
+    var latestBlockIndex = getLatestBlockIndex();
+    return read(latestBlockIndex);
 }
 
 // Index persistance and recovery
-function getCurrentBlockIndex() {
-    if (currentBlockIndex) return currentBlockIndex;
-    var currentIndexFile = fs.readFileSync(indexFile);
+function getLatestBlockIndex() {
+    if (latestBlockIndex) return latestBlockIndex;
+    var latestIndexFile = fs.readFileSync(indexFile);
     // TODO: Create zero file if error
-    return parseInt(currentIndexFile);
+    return parseInt(latestIndexFile);
 }
 
-function addOneToCurrentBlockIndex() {
-    currentBlockIndex = getCurrentBlockIndex();
-    currentBlockIndex++;
-    fs.writeFileSync(indexFile, currentBlockIndex.toString());
-    return currentBlockIndex;
+function addOneTolatestBlockIndex() {
+    latestBlockIndex = getLatestBlockIndex();
+    latestBlockIndex++;
+    fs.writeFileSync(indexFile, latestBlockIndex.toString());
+    return latestBlockIndex;
 }
 
 // Utils
 function getBlockPath (index) {
-    return blocksFolder + blocksPrefix + index;
+    return blocksFolder + blocksPrefix + index + blocksExtension;
 }
 
 module.exports = {
     readBlock: read,
     commitBlock: save,
-    getBlockIndex: getBlockIndex
+    getLatestBlock: getLatestBlock,
+    getLatestBlockIndex: getLatestBlockIndex
 }

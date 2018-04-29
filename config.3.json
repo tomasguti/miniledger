@@ -1,8 +1,8 @@
 {
-    "name": "peer2",
-    "port": 3002,
-    "certificate": "./keys/peer2/peer2.cert",
-    "privateKey": "./keys/peer2/peer2.key",
+    "name": "peer3",
+    "port": 3003,
+    "certificate": "./keys/peer3/peer3.cert",
+    "privateKey": "./keys/peer3/peer3.key",
     "peers": [
         {
             "name": "peer1",
@@ -11,10 +11,10 @@
             "certificate": "./keys/peer1/peer1.cert"
         },
         {
-            "name": "peer3",
+            "name": "peer2",
             "hostname": "localhost",
-            "port": 3003,
-            "certificate": "./keys/peer3/peer3.cert"
+            "port": 3002,
+            "certificate": "./keys/peer2/peer2.cert"
         }
     ]
 }

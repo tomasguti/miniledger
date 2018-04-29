@@ -1,6 +1,6 @@
 {
   "name": "miniledger",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "A minimal implementation of a distributed ledger for conceptual and learning purposes.",
   "main": "index.js",
   "scripts": {
@@ -25,6 +25,7 @@
   "homepage": "https://github.com/tomasguti/miniledger#readme",
   "dependencies": {
     "express": "^4.16.3",
-    "fs": "0.0.1-security"
+    "fs": "0.0.1-security",
+    "js-csp": "^1.0.1"
   }
 }

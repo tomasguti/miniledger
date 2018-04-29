@@ -9,6 +9,12 @@
             "hostname": "localhost",
             "port": 3002,
             "certificate": "./keys/peer2/peer2.cert"
+        },
+        {
+            "name": "peer3",
+            "hostname": "localhost",
+            "port": 3003,
+            "certificate": "./keys/peer3/peer3.cert"
         }
     ]
 }
