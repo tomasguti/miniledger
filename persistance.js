@@ -1,11 +1,11 @@
 const fs = require('fs');
 const config = require('./config');
 
-const blocksFolder = './blocks/' + config.name + '/';
+const blocksFolder = './' + config.name + '/blocks/';
 const blocksPrefix = 'block_';
 const blocksExtension = '.json';
 
-const indexFile = blocksFolder + config.name + '_LATEST';
+const indexFile = blocksFolder + 'INDEX';
 var latestBlock = null;
 var latestBlockIndex = null;
 

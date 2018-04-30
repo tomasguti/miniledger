@@ -1,4 +1,6 @@
 const https = require('https');
+const Logger = require('./log');
+const log = new Logger('network', 'magenta');
 
 function sendRequest(peer, endPoint, jsonData) {
 
@@ -17,25 +19,21 @@ function sendRequest(peer, endPoint, jsonData) {
   };
 
   return new Promise((resolve, reject) => {
-    console.log('OPTIONS', options);
+    log.debug('SENDING', `${options.hostname}:${options.port}${options.path}`);
     var req = https.request(options, (res) => {
       var data = '';
-      console.log(options.path, 'statusCode:', res.statusCode);
-    
       res.on('data', chunk => {
         data += chunk;
       });
-
       res.on('end', () => {
+        log.debug('ACK', `${options.hostname}:${options.port}${options.path}`, 'statusCode:', res.statusCode);
         resolve(data);
       });
     });
-      
     req.on('error', (e) => {
-      console.error(e);
+      log.error(e);
       reject();
     });
-      
     req.write(postData);
     req.end();
   });
